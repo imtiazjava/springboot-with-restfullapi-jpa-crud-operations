@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cgi.productapp.entity.Product;
 import com.cgi.productapp.service.ProductService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/")
 public class ProductController {
@@ -33,6 +35,7 @@ public class ProductController {
 	 */
 
 	@PostMapping(path = "product", consumes = { "application/json" })
+	@ApiOperation("SAVE-PRODUCT")
 	public ResponseEntity<String> saveProduct(@RequestBody Product product) {
 		boolean status = this.productService.saveProduct(product);
 		if (status == true) {
@@ -49,6 +52,7 @@ public class ProductController {
 	 */
 
 	@GetMapping(path = "product", produces = { "application/json" })
+	@ApiOperation("GET-ALL-PRODUCTS")
 	public ResponseEntity<List<Product>> getProducts() {
 		List<Product> list = this.productService.getProducts();
 		return new ResponseEntity<List<Product>>(list, HttpStatus.OK);
@@ -60,6 +64,7 @@ public class ProductController {
 	 */
 
 	@GetMapping(path = "product/{id}")
+	@ApiOperation("GET-PRODUCT-BY-ID")
 	public ResponseEntity<?> getProductById(@PathVariable("id") int id) {
 		Product product = this.productService.getProductById(id);
 		if (product == null) {
@@ -76,6 +81,7 @@ public class ProductController {
 	 */
 
 	@DeleteMapping(path = "product/{id}")
+	@ApiOperation("DELETE-PRODUCT-BY-ID")
 	public ResponseEntity<String> deleteProductById(@PathVariable("id") int id) {
 		boolean b = this.productService.deleteProductById(id);
 		if (b == true) {
@@ -95,6 +101,7 @@ public class ProductController {
 	 */
 
 	@PutMapping(path = "product", consumes = { "application/json" })
+	@ApiOperation("UPDATE-PRODUCT")
 	public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
 		 Product pr=this.productService.updateProduct(product);
 		 return new ResponseEntity<Product>(pr, HttpStatus.CREATED);

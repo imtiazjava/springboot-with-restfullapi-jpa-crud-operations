@@ -34,3 +34,8 @@ END POINT : http://localhost:8080/api/product
 
 ===================================***=============================
 
+
+IN ORDER TO TEST WITH SWAGGER DOCUMENATION USE THE FOLLOWING URL:
+
+http://localhost:8080/swagger-ui.html
+
